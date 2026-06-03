@@ -1,0 +1,2 @@
+# Assume pod-init-container is already there.
+# kubectl debug -it --attach=true -c debugger --image=redhat/ubi9 pod-init-container
