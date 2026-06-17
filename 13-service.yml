@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    appName: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-cip
+spec:
+  selector:
+    appName: nginx
+  ports:
+    - port: 80 # service port
+      targetPort: 80 # nginx pod port
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+spec:
+  containers:
+    - name: debug
+      image: docker.io/rkalluru/learnk8s:rhel9-bare
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: sample
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: debug
+#   namespace: sample
+# spec:
+#   containers:
+#     - name: debug
+#       image: docker.io/rkalluru/learnk8s:rhel9-bare
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-np
+spec:
+  type: NodePort
+  selector:
+    appName: nginx
+  ports:
+    - port: 80 # service port
+      targetPort: 80 # nginx pod port
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-lb
+spec:
+  type: LoadBalancer
+  selector:
+    appName: nginx
+  ports:
+    - port: 80 # service port
+      targetPort: 80 # nginx pod port
