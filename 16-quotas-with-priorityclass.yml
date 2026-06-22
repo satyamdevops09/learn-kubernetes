@@ -18,7 +18,7 @@ metadata:
   name: low
 spec:
   hard:
-    pods: "2"
+    pods: "1"
   scopeSelector:
     matchExpressions:
       - operator: In
