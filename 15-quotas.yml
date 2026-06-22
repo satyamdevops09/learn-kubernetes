@@ -1,0 +1,108 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: default
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: "1Gi"
+    limits.cpu: "2"
+    limits.memory: "2Gi"
+    requests.nvidia.com/gpu: 4
+    configmaps: "10"
+    persistentvolumeclaims: "4"
+    pods: "4"
+    replicationcontrollers: "20"
+    secrets: "10"
+    services: "10"
+    services.loadbalancers: "2"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx1
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      resources:
+        requests:
+          memory: "4Mi"
+          cpu: "20m"
+        limits:
+          memory: "8Mi"
+          cpu: "40m"
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx2
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      resources:
+        requests:
+          memory: "4Mi"
+          cpu: "20m"
+        limits:
+          memory: "8Mi"
+          cpu: "40m"
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx3
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      resources:
+        requests:
+          memory: "4Mi"
+          cpu: "20m"
+        limits:
+          memory: "8Mi"
+          cpu: "40m"
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx4
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      resources:
+        requests:
+          memory: "4Mi"
+          cpu: "20m"
+        limits:
+          memory: "8Mi"
+          cpu: "40m"
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx5
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      resources:
+        requests:
+          memory: "4Mi"
+          cpu: "20m"
+        limits:
+          memory: "8Mi"
+          cpu: "40m"
+      ports:
+        - containerPort: 80

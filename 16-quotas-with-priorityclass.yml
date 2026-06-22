@@ -1,0 +1,95 @@
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: high
+spec:
+  hard:
+    pods: "2"
+  scopeSelector:
+    matchExpressions:
+      - operator: In
+        scopeName: PriorityClass
+        values: ["high"]
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: low
+spec:
+  hard:
+    pods: "1"
+  scopeSelector:
+    matchExpressions:
+      - operator: In
+        scopeName: PriorityClass
+        values: ["low"]
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: high
+value: 1000000
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: low
+value: 2000000
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx1
+spec:
+  priorityClassName: low
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      resources:
+        requests:
+          memory: "4Mi"
+          cpu: "20m"
+        limits:
+          memory: "8Mi"
+          cpu: "40m"
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx2
+spec:
+  priorityClassName: low
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      resources:
+        requests:
+          memory: "4Mi"
+          cpu: "20m"
+        limits:
+          memory: "8Mi"
+          cpu: "40m"
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx3
+spec:
+  priorityClassName: high
+  containers:
+    - name: nginx
+      image: nginx:1.19
+      resources:
+        requests:
+          memory: "4Mi"
+          cpu: "20m"
+        limits:
+          memory: "8Mi"
+          cpu: "40m"
+      ports:
+        - containerPort: 80
