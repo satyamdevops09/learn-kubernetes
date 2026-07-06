@@ -16,7 +16,7 @@ spec:
     - name: nginx
       image: nginx
   tolerations:
-    - key: "project1"
+    - key: "project"
       operator: "Equal"
-      value: "roboshop1"
+      value: "roboshop"
       effect: "NoExecute"
