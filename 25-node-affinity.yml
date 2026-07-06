@@ -22,24 +22,24 @@ spec:
                 operator: In
                 values:
                   - "two"
-                  - "one"
-#---
-#apiVersion: v1
-#kind: Pod
-#metadata:
-#  name: with-node-preferred-affinity
-#spec:
-#  containers:
-#    - name: nginx
-#      image: nginx:1.14.2
-#  affinity:
-#    nodeAffinity:
-#      preferredDuringSchedulingIgnoredDuringExecution:
-#        - weight: 1
-#          preference:
-#            matchExpressions:
-#              - key: affinity1
-#                operator: In
-#                values:
-#                  - two
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-node-preferred-affinity
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.14.2
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          preference:
+            matchExpressions:
+              - key: affinity1
+                operator: In
+                values:
+                  - two
 
