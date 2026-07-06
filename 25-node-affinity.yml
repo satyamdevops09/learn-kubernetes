@@ -1,0 +1,44 @@
+#kubectl label node ip-172-31-14-140.ec2.internal affinity1=one
+#kubectl label node ip-172-31-81-124.ec2.internal affinity1=one
+#kubectl label node ip-172-31-83-205.ec2.internal affinity1=one
+# ip-172-31-14-140.ec2.internal
+# ip-172-31-81-124.ec2.internal
+# ip-172-31-83-205.ec2.internal
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: with-node-affinity
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.14.2
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: affinity1
+                operator: In
+                values:
+                  - "two"
+#---
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: with-node-preferred-affinity
+#spec:
+#  containers:
+#    - name: nginx
+#      image: nginx:1.14.2
+#  affinity:
+#    nodeAffinity:
+#      preferredDuringSchedulingIgnoredDuringExecution:
+#        - weight: 1
+#          preference:
+#            matchExpressions:
+#              - key: affinity1
+#                operator: In
+#                values:
+#                  - two
+
