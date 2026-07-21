@@ -25,4 +25,4 @@ spec:
   volumes:
     - name: claim1
       persistentVolumeClaim:
-        claimName: claim1
+        claimName: claim1 `
