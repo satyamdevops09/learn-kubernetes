@@ -20,10 +20,10 @@ metadata:
   name: catalogue
 data:
   MONGO       : "true"
-  MONGO_URL   : "mongodb://mongodb-dev.sdevops09.online:27017/catalogue"
+  MONGO_URL   : "mongodb://mongodb-dev.sdevops09.shop:27017/catalogue"
   DB_TYPE     : "mongo"
   APP_GIT_URL : "https://github.com/roboshop-devops-project-v3/catalogue"
-  DB_HOST     : "mongodb-dev.sdevops09.online"
+  DB_HOST     : "mongodb-dev.sdevops09.shop"
   SCHEMA_FILE : "db/master-data.js"
 ---
 apiVersion: v1
@@ -31,7 +31,7 @@ kind: ConfigMap
 metadata:
   name: cart
 data:
-  REDIS_HOST     : "redis-dev.sdevops09.online"
+  REDIS_HOST     : "redis-dev.sdevops09.shop"
   CATALOGUE_HOST : "catalogue"
   CATALOGUE_PORT : "8080"
 
@@ -42,8 +42,8 @@ metadata:
   name: user
 data:
   MONGO     : "true"
-  REDIS_URL : "redis://redis-dev.sdevops09.online:6379"
-  MONGO_URL : "mongodb://mongodb-dev.sdevops09.online:27017/users"
+  REDIS_URL : "redis://redis-dev.sdevops09.shop:6379"
+  MONGO_URL : "mongodb://mongodb-dev.sdevops09.shop:27017/users"
 
 ---
 apiVersion: v1
@@ -52,7 +52,7 @@ metadata:
   name: shipping
 data:
   CART_ENDPOINT : "cart:8080"
-  DB_HOST       : "mysql-dev.sdevops09.online"
+  DB_HOST       : "mysql-dev.sdevops09.shop"
   DB_USER       : "root"
   DB_PASS       : "RoboShop@1"
   DB_TYPE       : "mysql"
@@ -67,7 +67,7 @@ data:
   CART_PORT : "8080"
   USER_HOST : "user"
   USER_PORT : "8080"
-  AMQP_HOST : "rabbitmq-dev.sdevops09.online"
+  AMQP_HOST : "rabbitmq-dev.sdevops09.shop"
   AMQP_USER : "roboshop"
   AMQP_PASS : "roboshop123"
 
